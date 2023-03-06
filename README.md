@@ -113,17 +113,23 @@ Mas abajo en el mismo archivo habrá unas líneas que empiezan por location come
 
 ![](fotos/Captura23.PNG)
 
-Montaremos las carpetas de las máquinas Nginx.
+Montaremos las carpetas de las máquinas Nginx con el comando **sudo mount 172.16.1.40:/var/www/carpcomp /var/www/carpcomp**. Siendo la IP de nuestra máquina NFS y las carpetas compartidas de ambas máquinas.
 
 ![](fotos/Captura17.PNG)
 
 ![](fotos/Captura18.PNG)
 
+Por último con el comando **df -h** comprobamos que las rutas se han creado correctamente:
+
+![](fotos/Captura31.PNG)
+
+**EXTRA**: Si quieres configurar estas para que cada vez quen se arranquen las máquinas no tengas que repetir el comando en el archivo **/etc/fstab** ponemos el siguiente comando:
+
+![](fotos/Captura32.PNG)
+
 <div id="6">
 
 # 6.Configuración Balanceador.
-
-## 4.1.Balanceador en modo no seguro.
 
 Creamos el archivo **/etc/nginx/sites-available/confbalancer** y dentro copiamos la configuración de la siguiene captura, remplazando las IPs por las de las maquinas nginx (las IPs de la subred del balancer **172.16.1.20 y x.30**).
 
