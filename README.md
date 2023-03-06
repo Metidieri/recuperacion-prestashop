@@ -12,6 +12,8 @@
 
 [6.Configuración Balanceador.](#6)
 
+[7.Comprobacion de la instalación.](#7)
+
 <div id="1">
 
 # 1.Introducción al proyecto
@@ -83,19 +85,17 @@ Una vez creadas debemos de configurar el archivo **/etc/exports** con las rutas 
 
 ![](fotos/Captura16.PNG)
 
-Tras editar el archivo reiniciamos el servicio del NFS con **sudo systemctl restart nfs-kernel-server** y podremos montar las carpetas de las máquinas Nginx.
+Tras editar el archivo reiniciamos el servicio del NFS con **sudo systemctl restart nfs-kernel-server**
 
-![](fotos/Captura17.PNG)
+Procedemos a cambiar los permisos de la carpeta **carpcomp** primero con un **sudo chmod 777 -R /var/www/carpcomp** y luego un **chown nobody:nogroup /var/www/carpcomp**.
 
-![](fotos/Captura18.PNG)
+![](fotos/Captura30.PNG)
 
-Con esto, todo lo que hagamos en la carpeta del servidor NFS, se hará también en las carpetas de las máquinas Nginx. Por lo que ahora clonaremos el repositorio de git en la carpeta de la máquina NFS y haremos todas las configuraciones en esta máquina y moveremos todo el contenido del subdirectorio src hacia la carpeta **/var/www/carpcomp**.
+Ahora descargaremos el **prestashop** con el comando **"sudo wget https://download.prestashop.com/download/releases/prestashop_1.7.7.5.zip"** y lo descomprimimos con **"sudo unzip prestashop_1.7.7.5.zip"**
 
-![](fotos/Captura19.PNG)
+![](fotos/Captura26.PNG)
 
-Editaremos el fichero config.php y en este cambiaremos en **DB_HOST** valor de **localhost** por la IP de la máquina SQL (192.168.10.1).
-
-![](fotos/Captura20.PNG)
+![](fotos/Captura27.PNG)
 
 Ahora editaremos el archivo **/etc/php/7.4/fpm/pool.d/www.conf** y lo configuramos para poder conectarnos por socket TCP/IP. Aquí cambiaremos el contenido de la línea listen por la dirección **0.0.0.0:9000**.
 
@@ -113,6 +113,12 @@ Mas abajo en el mismo archivo habrá unas líneas que empiezan por location come
 
 ![](fotos/Captura23.PNG)
 
+Montaremos las carpetas de las máquinas Nginx.
+
+![](fotos/Captura17.PNG)
+
+![](fotos/Captura18.PNG)
+
 <div id="6">
 
 # 6.Configuración Balanceador.
@@ -127,13 +133,12 @@ Una vez hecho esto creamos un enlace hacia sites-enabled y borraremos el default
 
 ![](fotos/Captura25.PNG)
 
-## 4.2.Balanceador en modo seguro.
+<div id="7">
 
-Para configurarlo en modo seguro debemos generar unas claves certificadoras, ya que son necesarias para activar SSL en Nginx. Para ello usaremos el siguiente comando que nos creara tanto un certificado público como una clave privada: **sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/servernginx.com.key -out /etc/ssl/certs/servernginx.com.pem**
+# 7.Comprobacion de la instalación.
 
-Ahora tendremos que irnos a nuestro fichero de configuración de Nginx que esta en **sites-enabled** y agregar las líneas necesarias para que funcione el SSL. También podremos documentar las líneas que agregamos anteriormente si queremos que a nuestra página solo se pueda acceder desde HTTPS.
+Buscaremos en el navegador la dirección publica de nuestra máquina **balancer** en mi caso es la 192.168.1.132, pero de la siguiente forma **"http://192.168.1.132"** y nos aparecera lo siguiente mostrando que hemos realizado bien la configuración y la instalación se encuentra preparada para realizarse.
 
-https://blog.ruanbekker.com/blog/2017/12/09/unmask-a-masked-service-in-systemd/
-![](fotos/Captura10.PNG)
+![](fotos/Captura28.PNG)
 
-Ya solo nos queda reiniciar nuestro servicio Nginx y al intentar acceder desde internet solo podremos poniendo https:// seguido de la dirección IP pública.
+![](fotos/Captura29.PNG)
