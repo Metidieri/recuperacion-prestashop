@@ -133,6 +133,7 @@ Para configurarlo en modo seguro debemos generar unas claves certificadoras, ya 
 
 Ahora tendremos que irnos a nuestro fichero de configuración de Nginx que esta en **sites-enabled** y agregar las líneas necesarias para que funcione el SSL. También podremos documentar las líneas que agregamos anteriormente si queremos que a nuestra página solo se pueda acceder desde HTTPS.
 
+https://blog.ruanbekker.com/blog/2017/12/09/unmask-a-masked-service-in-systemd/
 ![](fotos/Captura10.PNG)
 
 Ya solo nos queda reiniciar nuestro servicio Nginx y al intentar acceder desde internet solo podremos poniendo https:// seguido de la dirección IP pública.
