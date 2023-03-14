@@ -18,7 +18,7 @@
 
 # 1.Introducción al proyecto
 
-El proyecto que vas a ver a continuación es una estructura CMS, la cual cuenta con 1 balanceador, mediante el cual vamos a acceder a la estructura; 2 servidores nginx los cuales nos van a hacer de puente para conectarnos al servidor mysql en el que tenemos nuestra base de datos; 1 maquina con un servidor nfs con el cual compartiremos una carpeta, en la cual encontramos los recursos necesarios para levantar nuestra pagina web y por último tenemos el servidor mysql en el que tendremos nuestra base de datos.
+El proyecto que vas a ver a continuación es una estructura CMS, la cual cuenta con 1 balanceador, mediante el cual vamos a acceder a la estructura; 2 servidores nginx los cuales nos van a hacer de puente para conectarnos al servidor mysql en el que tenemos nuestra base de datos; 1 máquina con un servidor nfs con el cual compartiremos una carpeta, en la cual encontramos los recursos necesarios para levantar nuestra página web y por último tenemos el servidor mysql en el que tendremos nuestra base de datos.
 
 <div id="2">
 
@@ -27,22 +27,22 @@ El proyecto que vas a ver a continuación es una estructura CMS, la cual cuenta 
 Aqui esta la configuración del archivo **VagrantFile** con el cual levantaremos el entorno.
 En este apreciamos que el balanceador esta en una subred aislada junto con los dos nginx, por otro lado encontramos el nfs el cual tmb se encuentra en otra subred junto con los dos nginx, y para acabar encontramos el mysql en otra distinta con los dos nginx.
 
-### Configuracion del **Balanceador** en el Vagrantfile + **script**
+### Configuración del **Balanceador** en el Vagrantfile + **script**
 
 ![](fotos/Captura1.PNG)
 ![](fotos/Captura2.PNG)
 
-### Configuracion del **Nginx** en el Vagrantfile + **script**
+### Configuración del **Nginx** en el Vagrantfile + **script**
 
 ![](fotos/Captura3.PNG) 
 ![](fotos/Captura4.PNG)
 ![](fotos/Captura5.PNG)
 
-### Configuracion del **NFS** en el Vagrantfile + **script**
+### Configuración del **NFS** en el Vagrantfile + **script**
 ![](fotos/Captura6.PNG)
 ![](fotos/Captura9.PNG)
 
-### Configuracion del **MYSQL** en el Vagrantfile + **script**
+### Configuración del **MYSQL** en el Vagrantfile + **script**
 
 ![](fotos/Captura7.PNG)
 ![](fotos/Captura8.PNG)
@@ -55,7 +55,7 @@ En la máquina **MYSQL** entraremos en el directorio **/etc/mysql/mariadb.conf.d
 
 ![](fotos/Captura10.PNG)
 
-Dentro de este cambiaremos la **bind-address** y pondremos la ip de nuestra maquina mysql **(192.168.10.1)** en lugar de **127.0.0.1**.
+Dentro de este cambiaremos la **bind-address** y pondremos la ip de nuestra máquina mysql **(192.168.10.1)** en lugar de **127.0.0.1**.
 
 ![](fotos/Captura11.PNG)
 
@@ -63,7 +63,7 @@ A continuación con el comando **sudo mysql\_secure\_installation** podremos cam
 
 ![](fotos/Captura12.PNG)
 
-Una vez podamos haceder al mysql con el root, entramos y nos disponemos a crear el usuario el cual sera el que useamos para añadir, editar y borrar datos en nuestro CMS, para ellos debemos de crearlo con **%** en vez de con **localhost** ya que al disponer de 2 nginx no podemos usar dos direcciones IP, y le daremos permisos al usuario en la base de datos que vamos a añadir mas adelante.
+Una vez podamos haceder al mysql con el root, entramos y nos disponemos a crear el usuario el cual será el que useamos para añadir, editar y borrar datos en nuestro CMS, para ellos debemos de crearlo con **%** en vez de con **localhost** ya que al disponer de 2 nginx no podemos usar dos direcciones IP, y le daremos permisos al usuario en la base de datos que vamos a añadir más adelante.
 
 ![](fotos/Captura13.PNG)
 
