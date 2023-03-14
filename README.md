@@ -12,13 +12,13 @@
 
 [6.Configuración Balanceador.](#6)
 
-[7.Comprobacion de la instalación.](#7)
+[7.Comprobación de la instalación.](#7)
 
 <div id="1">
 
 # 1.Introducción al proyecto
 
-El proyecto que vas a ver a continuación es una estructura CMS, la cual cuenta con 1 balanceador, mediante el cual vamos a haceder a la estructura; 2 servidores nginx los cuales nos van a hacer de puente para conectarnos al servidor mysql en el que tenemos nuestra base de datos; 1 maquina con un servidor nfs con el cual compartiremos una carpeta, en la cual encontramos los recursos necesarios para levantar nuestra pagina web y por último tenemos el servidor mysql en el que tendremos nuestra base de datos.
+El proyecto que vas a ver a continuación es una estructura CMS, la cual cuenta con 1 balanceador, mediante el cual vamos a acceder a la estructura; 2 servidores nginx los cuales nos van a hacer de puente para conectarnos al servidor mysql en el que tenemos nuestra base de datos; 1 maquina con un servidor nfs con el cual compartiremos una carpeta, en la cual encontramos los recursos necesarios para levantar nuestra pagina web y por último tenemos el servidor mysql en el que tendremos nuestra base de datos.
 
 <div id="2">
 
@@ -131,7 +131,7 @@ Por último con el comando **df -h** comprobamos que las rutas se han creado cor
 
 # 6.Configuración Balanceador.
 
-Creamos el archivo **/etc/nginx/sites-available/confbalancer** y dentro copiamos la configuración de la siguiene captura, remplazando las IPs por las de las maquinas nginx (las IPs de la subred del balancer **172.16.1.20 y x.30**).
+Creamos el archivo **/etc/nginx/sites-available/confbalancer** y dentro copiamos la configuración de la siguiene captura, remplazando las IPs por las de las máquinas nginx (las IPs de la subred del balancer **172.16.1.20 y x.30**).
 
 ![](fotos/Captura24.PNG)
 
@@ -143,7 +143,7 @@ Una vez hecho esto creamos un enlace hacia sites-enabled y borraremos el default
 
 # 7.Comprobacion de la instalación.
 
-Buscaremos en el navegador la dirección publica de nuestra máquina **balancer** en mi caso es la 192.168.1.132, pero de la siguiente forma **"http://192.168.1.132"** y nos aparecera lo siguiente mostrando que hemos realizado bien la configuración y la instalación se encuentra preparada para realizarse.
+Buscaremos en el navegador la dirección pública de nuestra máquina **balancer** en mi caso es la 192.168.1.132, pero de la siguiente forma **"http://192.168.1.132"** y nos aparecera lo siguiente, mostrando que hemos realizado bien la configuración y la instalación se encuentra preparada para realizarse.
 
 ![](fotos/Captura28.PNG)
 
